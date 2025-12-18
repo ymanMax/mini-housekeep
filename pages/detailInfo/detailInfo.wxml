@@ -6,7 +6,59 @@
   <block wx:for="{{images}}" wx:key="index">
     <image src="{{item}}" mode="aspectFill" class="fade_in"></image>
   </block>
-  
+
+  <!-- 用户评价区域 -->
+  <view class="comment-section">
+    <view class="section-title">
+      <text>用户评价</text>
+      <text class="comment-count">({{commentList.length}}条)</text>
+    </view>
+
+    <!-- 平均评分 -->
+    <view class="average-rating" wx:if="{{commentList.length > 0}}">
+      <view class="rating-stars">
+        <block wx:for="{{5}}" wx:key="index">
+          <image class="star {{index < averageRating ? 'active' : ''}}" src="../../images/icon_star.png"></image>
+        </block>
+      </view>
+      <text class="rating-text">{{averageRating}}分</text>
+    </view>
+
+    <!-- 评价列表 -->
+    <view class="comment-list">
+      <block wx:for="{{commentList}}" wx:key="id">
+        <view class="comment-item">
+          <view class="comment-header">
+            <image class="avatar" src="{{item.avatar}}"></image>
+            <view class="user-info">
+              <text class="user-name">{{item.userName}}</text>
+              <view class="user-rating">
+                <block wx:for="{{5}}" wx:key="index">
+                  <image class="star {{index < item.rating ? 'active' : ''}}" src="../../images/icon_star.png"></image>
+                </block>
+              </view>
+            </view>
+            <text class="comment-time">{{item.createTime}}</text>
+          </view>
+          <view class="comment-content">{{item.content}}</view>
+          <view class="comment-images" wx:if="{{item.images && item.images.length > 0}}">
+            <block wx:for="{{item.images}}" wx:key="index">
+              <image class="comment-image" src="{{item}}" mode="aspectFill"></image>
+            </block>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <!-- 评价为空时的提示 -->
+    <view class="no-comments" wx:if="{{commentList.length == 0}}">
+      <text>暂无评价，快来抢沙发吧~</text>
+    </view>
+
+    <!-- 写评价按钮 -->
+    <button class="write-comment-btn" catchtap="writeCommentClick">写评价</button>
+  </view>
+
   <view class="ft-bar">
     <view class="amount">合计 ￥{{amount}}</view>
     <button class="send-btn" catchtap="sendbtnClick">立即预约</button>

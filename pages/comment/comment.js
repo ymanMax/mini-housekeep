@@ -4,7 +4,22 @@ const { commentRequest } = require('../../api/index.js');
 Page({
   data: {
     imageList: [],
-    uploading: false
+    uploading: false,
+    score: 5, // 默认5星
+    content: ''
+  },
+  // 星星选择
+  selectStar(e) {
+    const index = e.currentTarget.dataset.index;
+    this.setData({
+      score: index
+    });
+  },
+  // 评价内容输入
+  onContentInput(e) {
+    this.setData({
+      content: e.detail.value
+    });
   },
   addImage() {
     let that = this;
@@ -41,7 +56,7 @@ Page({
   formSubmit(e) {
     console.log(e.detail.value);
     let data = e.detail.value;
-    if (!data.content.length) {
+    if (!data.content || !data.content.length) {
       wx.showModal({
         title: '说点什么吧',
         showCancel: false
@@ -63,7 +78,7 @@ Page({
     });
     
     const commentData = {
-      score: data.score || 5,
+      score: data.score || that.data.score,
       content: data.content,
       images: imageList,
       serviceName: '家政服务',

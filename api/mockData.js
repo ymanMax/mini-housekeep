@@ -209,7 +209,8 @@ export const commentData = {
       rating: 5,
       content: "月嫂服务非常专业，对宝宝很有耐心，强烈推荐！",
       serviceName: "高级月嫂服务",
-      createTime: "2024-01-12"
+      createTime: "2024-01-12",
+      images: []
     },
     {
       id: "2",
@@ -218,7 +219,8 @@ export const commentData = {
       rating: 4,
       content: "保洁阿姨很认真，打扫得很干净，下次还会选择",
       serviceName: "深度保洁服务",
-      createTime: "2024-01-08"
+      createTime: "2024-01-08",
+      images: []
     },
     {
       id: "3",
@@ -227,7 +229,8 @@ export const commentData = {
       rating: 5,
       content: "维修师傅技术很好，很快就解决了问题",
       serviceName: "维修安装服务",
-      createTime: "2024-01-05"
+      createTime: "2024-01-05",
+      images: []
     }
   ]
 };
