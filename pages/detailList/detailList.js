@@ -1,12 +1,12 @@
 // detailList.js
 //获取应用实例
-var interfaces = {
-  detailList: '../../json/detailList.js'
-};
+const { serviceRequest } = require('../../api/index.js');
+
 Page({
   data: {
     detailList: [],
-    pageNum: 1
+    pageNum: 1,
+    serviceId: '' // 服务ID
   },
   checkboxChange(e) {
     console.log(e.detail.dataset.id);
@@ -37,43 +37,39 @@ Page({
       //在标题栏中显示加载
       wx.showNavigationBarLoading();
     }
-    // wx.request({
-    //   url: interfaces.detailList,
-    //   data: {
-    //       // uid: 0,
-    //       page: that.data.pageNum
-    //   },
-    //   method: 'GET',
-    //   success: function (res) {
-    var res = require(interfaces.detailList);
-    //停止下拉刷新
-    wx.stopPullDownRefresh();
+    
+    serviceRequest.getDetailList(that.data.serviceId)
+      .then(res => {
+        //停止下拉刷新
+        wx.stopPullDownRefresh();
 
-    if (that.data.pageNum == 1) {
-      that.data.detailList = []
-    }
+        if (that.data.pageNum == 1) {
+          that.data.detailList = []
+        }
 
-    var detailList = res.data;
-    console.log(detailList.length);
-    that.setData({
-      detailList: detailList,
-      loading: true
-    })
-    //   },
-    //   fail: function () {
-    //       // fail
-    //       wx.showModal({
-    //           title: '加载出错',
-    //           showCancel: false
-    //       })
-    //   },
-    //   complete: function () {
-    //       // complete
-    //       wx.hideToast();
-    //       wx.hideNavigationBarLoading();
-    //       //完成停止加载
-    //   }
-    // })
+        if (res.code === 'success') {
+          var detailList = res.data;
+          console.log('服务详情列表数据:', detailList.length);
+          that.setData({
+            detailList: detailList,
+            loading: true
+          });
+        }
+        
+        //完成停止加载
+        wx.hideToast();
+        wx.hideNavigationBarLoading();
+      })
+      .catch(err => {
+        console.error('获取服务详情列表失败:', err);
+        wx.showModal({
+          title: '加载出错',
+          content: '服务详情列表加载失败',
+          showCancel: false
+        });
+        wx.hideToast();
+        wx.hideNavigationBarLoading();
+      });
   },
   onLoad: function () {
     console.log('onLoad');

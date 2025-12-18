@@ -1,8 +1,6 @@
 //comment.js
-var interfaces = {
-  comment: '../../json/comment.js',
-  uploadFile: '../../json/uploadFile.js'
-};
+const { commentRequest } = require('../../api/index.js');
+
 Page({
   data: {
     imageList: [],
@@ -50,68 +48,53 @@ Page({
       })
       return;
     }
+    
     let imageList = this.data.imageList;
+    let that = this;
+    
+    // 模拟上传图片（mock模式下直接使用本地路径）
     if (!this.data.uploading && imageList.length) {
-      imageList.forEach(item => {
-        wx.uploadFile({
-          url: interfaces.uploadFile,
-          filePath: item,
-          name:'file',
-          // header: {}, // 设置请求的 header
-          // formData: {}, // HTTP 请求中其他额外的 form data
-          success: function(res){
-            // success
-          },
-          fail: function() {
-            wx.showModal({
-              title: '上传图片失败',
-              showCancel: false
-            })
-            return;
-          },
-          complete: function() {
-            // complete
-          }
-        })
-      })
+      console.log('模拟上传图片:', imageList);
     }
-    wx.navigateBack({
-      delta: 1, // 回退前 delta(默认为1) 页面
-    })
-    return;
     
-    wx.request({
-      url: interfaces.comment,
-      data: {
-        score: data.score,
-        content: data.content,
-        images: imageList
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        wx.showModal({
-          title: '提交成功',
-          showCancel: false
-        })
-        wx.navigateBack({
-          delta: 1, // 回退前 delta(默认为1) 页面
-        })
-      },
-      fail: function (res) {
-        wx.showModal({
-          title: '加载出错',
-          showCancel: false
-        })
-      },
-      complete: function (res) {
-        wx.hideToast();
-      }
-    })
+    // 使用mock API提交评价
+    wx.showLoading({
+      title: '提交中...',
+    });
     
-
+    const commentData = {
+      score: data.score || 5,
+      content: data.content,
+      images: imageList,
+      serviceName: '家政服务',
+      userName: '用户'
+    };
+    
+    commentRequest.submitComment(commentData)
+      .then(res => {
+        wx.hideLoading();
+        if (res.code === 'success') {
+          wx.showModal({
+            title: '提交成功',
+            content: '感谢您的评价！',
+            showCancel: false,
+            success: function() {
+              wx.navigateBack({
+                delta: 1, // 回退前 delta(默认为1) 页面
+              });
+            }
+          });
+        }
+      })
+      .catch(err => {
+        wx.hideLoading();
+        console.error('提交评价失败:', err);
+        wx.showModal({
+          title: '提交失败',
+          content: '评价提交失败，请重试',
+          showCancel: false
+        });
+      });
   },
   onLoad: function () {
   }

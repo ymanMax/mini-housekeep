@@ -1,18 +1,51 @@
 // orderList.js
+const { orderRequest } = require('../../api/index.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    orderList: []
+  },
+
+  /**
+   * 获取订单列表数据
+   */
+  getOrderList() {
+    var that = this;
+    wx.showLoading({
+      title: '加载中...',
+    });
+    
+    orderRequest.getOrderList()
+      .then(res => {
+        wx.hideLoading();
+        if (res.code === 'success') {
+          var orderList = res.data;
+          console.log('订单列表数据:', orderList);
+          that.setData({
+            orderList: orderList
+          });
+        }
+      })
+      .catch(err => {
+        wx.hideLoading();
+        console.error('获取订单列表失败:', err);
+        wx.showModal({
+          title: '加载出错',
+          content: '订单列表加载失败',
+          showCancel: false
+        });
+      });
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getOrderList();
   },
 
   /**

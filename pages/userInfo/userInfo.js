@@ -1,8 +1,7 @@
 // userInfo.js
 var app = getApp()
-let interfaces = {
-  userInfo: '../../json/userInfo.js'
-}
+const { userRequest } = require('../../api/index.js');
+
 Page({
   data: {
     userInfo: {},
@@ -20,35 +19,27 @@ Page({
   },
   reqData() {
     var that = this;
-    // wx.request({
-    //   url: interfaces.userInfo,
-    //   data: {
-    //       // uid: 0,
-    //   },
-    //   method: 'GET',
-    //   success: function (res) {
-    var res = require(interfaces.userInfo);
-    var data = res.data;
-    that.setData({
-      name: data.name || that.data.userInfo.nickName,
-      sex: data.sex || '0',
-      phone: data.phone || '',
-      address: data.address || '',
-      intro: data.intro || ''
-    })
-    //   },
-    //   fail: function () {
-    //       // fail
-    //       wx.showModal({
-    //           title: '加载出错',
-    //           showCancel: false
-    //       })
-    //   },
-    //   complete: function () {
-    //       // complete
-    //       wx.hideToast();
-    //   }
-    // })
+    userRequest.getUserInfo()
+      .then(res => {
+        if (res.code === 'success') {
+          var data = res.data;
+          that.setData({
+            name: data.name || that.data.userInfo.nickName,
+            sex: data.sex || '0',
+            phone: data.phone || '',
+            address: data.address || '',
+            intro: data.intro || ''
+          });
+        }
+      })
+      .catch(err => {
+        console.error('获取用户信息失败:', err);
+        wx.showModal({
+          title: '加载出错',
+          content: '用户信息加载失败',
+          showCancel: false
+        });
+      });
   },
   formSubmit(e) {
     console.log(e.detail.value)
