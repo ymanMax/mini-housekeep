@@ -1,0 +1,82 @@
+.page {
+}
+.hd {
+  display:flex;
+  flex-flow:row wrap;
+  justify-content: space-between;
+  padding:10rpx 20rpx;
+  font-size:30rpx;
+  line-height:32rpx;
+  border-bottom:20rpx solid #eee;
+}
+.notice {
+  width:620rpx;
+  margin:10rpx;
+}
+.my-address{
+  box-sizing: border-box;
+  margin:10rpx;
+  width:50rpx;
+  height:50rpx;
+}
+.bd {
+}
+.tab .tab-item{
+  position: relative;
+  display: inline-block;
+  /* box-sizing: border-box; */
+  width: 50%;
+  height:80rpx;
+  line-height: 80rpx;
+  font-size:34rpx;
+  text-align: center;
+  border-bottom:1px solid #eee;
+}
+.tab .current text{
+  display: block;
+  margin:0 20%;
+  border-bottom:2rpx solid #1a99fc;
+  color: #1a99fc;
+}
+
+.content{
+  padding: 20rpx;
+}
+.details-cont {
+  font-size: 30rpx;
+}
+
+.comments-cont{
+  font-size: 30rpx;
+}
+.comments-cont .score{
+  padding:20rpx;
+  text-align: center;
+  color:red;
+}
+.comments-cont .score text{
+  font-size: 38rpx;
+}
+.comment-list{
+  color:#666;
+  text-align: center;
+}
+
+ .fixed-pop{
+  position: fixed;
+  bottom:40rpx;
+  right:20rpx;
+  width:50rpx;
+}
+.call-btn,
+.comment-btn {
+  display:block;
+  margin-bottom:20rpx;
+  width:50rpx;
+  height:50rpx;
+}
+.comment-btn{
+  margin-right:10rpx;
+  width:62rpx;
+  height:50rpx;
+}
