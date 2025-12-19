@@ -1,13 +1,15 @@
-import { 
-  mockDelay, 
-  bannerData, 
-  serviceData, 
-  detailListData, 
-  detailInfoData, 
-  userInfoData, 
-  orderListData, 
-  commentData, 
-  introductionData 
+import {
+  mockDelay,
+  bannerData,
+  serviceData,
+  detailListData,
+  detailInfoData,
+  userInfoData,
+  orderListData,
+  commentData,
+  introductionData,
+  workerData,
+  bookingNotificationData
 } from './mockData.js';
 
 // 首页相关请求
@@ -118,6 +120,47 @@ export const commentRequest = {
   }
 };
 
+// 服务人员相关请求
+export const workerRequest = {
+  // 获取服务人员列表
+  getWorkerList() {
+    return mockDelay(workerData);
+  },
+
+  // 获取单个服务人员详情
+  getWorkerDetail(workerId) {
+    const worker = workerData.data.find(item => item.id === workerId);
+    return mockDelay({
+      code: "success",
+      data: worker
+    });
+  }
+};
+
+// 预约相关请求
+export const bookingRequest = {
+  // 创建预约
+  createBooking(bookingData) {
+    const newBooking = {
+      id: `booking${Math.random().toString().substr(2, 6)}`,
+      ...bookingData,
+      status: "confirmed",
+      createTime: new Date().toISOString()
+    };
+
+    return mockDelay({
+      code: "success",
+      message: "预约成功",
+      data: newBooking
+    });
+  },
+
+  // 发送预约通知
+  sendNotification(notificationData) {
+    return mockDelay(bookingNotificationData);
+  }
+};
+
 // 公司介绍相关请求
 export const companyRequest = {
   // 获取公司介绍
@@ -132,5 +175,7 @@ export default {
   userRequest,
   orderRequest,
   commentRequest,
-  companyRequest
+  companyRequest,
+  workerRequest,
+  bookingRequest
 };

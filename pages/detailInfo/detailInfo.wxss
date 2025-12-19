@@ -2,6 +2,83 @@
 .content{
   padding: 40rpx 20rpx;
   font-size:26rpx;
+  line-height: 1.6;
+}
+
+/* 服务头部信息 */
+.service-header {
+  padding: 20rpx;
+  background-color: #f8f9fa;
+  margin-bottom: 20rpx;
+}
+
+.service-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.service-price {
+  display: flex;
+  align-items: baseline;
+}
+
+.current-price {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #ff4d4f;
+  margin-right: 20rpx;
+}
+
+.original-price {
+  font-size: 24rpx;
+  color: #999;
+  text-decoration: line-through;
+}
+
+/* 图片展示 */
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.service-image {
+  width: 33.333%;
+  height: 200rpx;
+  box-sizing: border-box;
+  border: 2rpx solid #fff;
+}
+
+/* 服务章节 */
+.service-section {
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  background-color: #fff;
+  border-radius: 8rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.service-list {
+  padding-left: 10rpx;
+}
+
+.service-item {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 8rpx;
 }
 
 .ft-bar{
