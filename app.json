@@ -8,7 +8,8 @@
     "pages/booking/booking",
     "pages/introduction/introduction",
     "pages/orderList/orderList",
-    "pages/userInfo/userInfo"
+    "pages/userInfo/userInfo",
+    "pages/coupon/coupon"
   ],
   "window": {
     "backgroundTextStyle": "light",
