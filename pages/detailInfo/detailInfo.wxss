@@ -4,6 +4,126 @@
   font-size:26rpx;
 }
 
+/* 用户评价区域样式 */
+.comment-section{
+  padding: 0 20rpx 120rpx;
+  background: #f9f9f9;
+  min-height: 400rpx;
+}
+.comment-section .section-title{
+  font-size: 32rpx;
+  font-weight: bold;
+  padding: 30rpx 0;
+  color: #333;
+}
+.comment-section .section-title .comment-count{
+  font-size: 26rpx;
+  font-weight: normal;
+  color: #999;
+  margin-left: 10rpx;
+}
+.average-rating{
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0 30rpx;
+  border-bottom: 1px solid #eee;
+}
+.rating-stars .star{
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+}
+.rating-stars .star.active{
+  opacity: 1;
+}
+.rating-stars .star:not(.active){
+  opacity: 0.3;
+}
+.average-rating .rating-text{
+  font-size: 28rpx;
+  color: #666;
+  margin-left: 20rpx;
+}
+.comment-list{
+  padding: 30rpx 0;
+}
+.comment-item{
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+.comment-header{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.comment-header .avatar{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.comment-header .user-info{
+  flex: 1;
+}
+.comment-header .user-name{
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 8rpx;
+  display: block;
+}
+.user-rating .star{
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 4rpx;
+}
+.user-rating .star.active{
+  opacity: 1;
+}
+.user-rating .star:not(.active){
+  opacity: 0.3;
+}
+.comment-header .comment-time{
+  font-size: 24rpx;
+  color: #999;
+}
+.comment-content{
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 20rpx;
+}
+.comment-images{
+  display: flex;
+  flex-wrap: wrap;
+}
+.comment-image{
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+  border-radius: 8rpx;
+}
+.no-comments{
+  text-align: center;
+  padding: 60rpx 0;
+  color: #999;
+  font-size: 26rpx;
+}
+.write-comment-btn{
+  width: 100%;
+  background: #1a99fc;
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center;
+  border-radius: 50rpx;
+  padding: 25rpx 0;
+  margin-top: 30rpx;
+  box-shadow: 0 4rpx 15rpx rgba(26, 153, 252, 0.3);
+}
+
 .ft-bar{
   position: fixed;
   bottom:0;

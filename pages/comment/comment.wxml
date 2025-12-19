@@ -1,13 +1,22 @@
-<!--logs.wxml-->
+<!--comment.wxml-->
 <view class="comment-page">
   <form class="form" bindsubmit="formSubmit">
     <view class="section">
       <text class="title">评分</text>
-      <image class="star-box" src="../../images/icon_star.png"></image>
+      <view class="star-rating">
+        <block wx:for="{{5}}" wx:key="index">
+          <image
+            class="star {{index < score ? 'active' : ''}}"
+            src="{{index < score ? '../../images/icon_star_active.png' : '../../images/icon_star.png'}}"
+            data-index="{{index + 1}}"
+            bindtap="selectStar"
+          ></image>
+        </block>
+      </view>
       <input name="score" value="{{score}}" hidden/>
     </view>
     <view class="section-textarea">
-      <textarea name="content" placeholder="写点什么吧..." />
+      <textarea name="content" placeholder="写点什么吧..." value="{{content}}" bindinput="onContentInput" />
     </view>
     <view class="section-image">
       <image class="image-item delete-btn" src="{{item}}" wx:for="{{imageList}}" wx:for-item="item" wx:key="unique" data-src="{{item}}" bindtap="deleteImage"></image>
