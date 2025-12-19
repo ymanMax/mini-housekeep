@@ -126,6 +126,12 @@ export const detailInfoData = {
     price: "380元/天",
     originalPrice: "480元/天",
     duration: "全天服务",
+    detail: "专业提供高品质的月嫂服务，拥有5年以上经验的专业月嫂团队，为您和宝宝提供全方位的护理服务。我们的月嫂经过严格筛选和专业培训，具备丰富的母婴护理知识和实际操作经验。",
+    images: [
+      "/images/ad_1.jpeg",
+      "/images/ad_2.jpeg",
+      "/images/ad_3.jpeg"
+    ],
     serviceContent: [
       "新生儿日常护理（喂养、洗澡、抚触）",
       "产妇产后恢复指导",
@@ -232,6 +238,53 @@ export const commentData = {
   ]
 };
 
+// 服务人员数据
+export const workerData = {
+  code: "success",
+  data: [
+    {
+      id: "worker001",
+      name: "王阿姨",
+      avatar: "/images/icon.png",
+      title: "高级月嫂",
+      experience: "5年经验",
+      rating: 4.8,
+      completedOrders: 156,
+      specialties: ["母婴护理", "月子餐", "新生儿护理"]
+    },
+    {
+      id: "worker002",
+      name: "李师傅",
+      avatar: "/images/icon.png",
+      title: "保洁专家",
+      experience: "8年经验",
+      rating: 4.9,
+      completedOrders: 234,
+      specialties: ["深度保洁", "玻璃清洁", "厨房消毒"]
+    },
+    {
+      id: "worker003",
+      name: "张师傅",
+      avatar: "/images/icon.png",
+      title: "维修工程师",
+      experience: "10年经验",
+      rating: 4.7,
+      completedOrders: 312,
+      specialties: ["家电维修", "家具安装", "水管维修"]
+    },
+    {
+      id: "worker004",
+      name: "赵阿姨",
+      avatar: "/images/icon.png",
+      title: "产后修复师",
+      experience: "6年经验",
+      rating: 4.6,
+      completedOrders: 189,
+      specialties: ["产后恢复", "瑜伽指导", "营养咨询"]
+    }
+  ]
+};
+
 // 公司介绍数据
 export const introductionData = {
   code: "success",
@@ -248,4 +301,10 @@ export const introductionData = {
       "完善的售后服务保障"
     ]
   }
+};
+
+// 预约通知数据
+export const bookingNotificationData = {
+  code: "success",
+  message: "预约成功，已通知用户和服务人员"
 };

@@ -14,12 +14,36 @@
       <text class="title">预约时间</text>
       <input name="datetime" value="{{date}} {{time}}" hidden/>
       <view class="date-time">
-        <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+        <picker mode="date" value="{{date}}" start="{{today}}" end="{{maxDate}}" bindchange="bindDateChange">
           <view class="picker date">{{date}}</view>
         </picker>
-        <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+        <picker mode="time" value="{{time}}" start="09:00" end="21:00" bindchange="bindTimeChange">
           <view class="picker time">{{time}}</view>
         </picker>
+      </view>
+    </view>
+    <view class="section">
+      <text class="title">选择服务人员</text>
+      <view class="workers">
+        <block wx:for="{{workers}}" wx:key="id">
+          <view class="worker-item {{selectedWorker == item.id ? 'selected' : ''}}" bindtap="selectWorker" data-workerid="{{item.id}}">
+            <view class="worker-info">
+              <image class="worker-avatar" src="{{item.avatar}}"></image>
+              <view class="worker-details">
+                <view class="worker-name">{{item.name}} <text class="worker-title">{{item.title}}</text></view>
+                <view class="worker-stats">
+                  <text>经验: {{item.experience}}</text>
+                  <text>评分: {{item.rating}}⭐</text>
+                  <text>完成单: {{item.completedOrders}}</text>
+                </view>
+                <view class="worker-specialties">
+                  <text wx:for="{{item.specialties}}" wx:key="index" class="specialty-tag">{{item}}</text>
+                </view>
+              </view>
+            </view>
+            <view class="selected-icon" wx:if="{{selectedWorker == item.id}}">✓</view>
+          </view>
+        </block>
       </view>
     </view>
     <view class="section">
