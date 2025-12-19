@@ -1,13 +1,14 @@
-import { 
-  mockDelay, 
-  bannerData, 
-  serviceData, 
-  detailListData, 
-  detailInfoData, 
-  userInfoData, 
-  orderListData, 
-  commentData, 
-  introductionData 
+import {
+  mockDelay,
+  bannerData,
+  serviceData,
+  detailListData,
+  detailInfoData,
+  userInfoData,
+  orderListData,
+  orderTrackData,
+  commentData,
+  introductionData
 } from './mockData.js';
 
 // 首页相关请求
@@ -92,6 +93,20 @@ export const orderRequest = {
       message: "订单取消成功",
       data: { orderId }
     });
+  },
+
+  // 获取订单跟踪信息
+  getOrderTrack(orderId) {
+    const trackData = orderTrackData[orderId];
+    if (trackData) {
+      return mockDelay(trackData);
+    } else {
+      return mockDelay({
+        code: "error",
+        message: "订单不存在",
+        data: null
+      });
+    }
   }
 };
 

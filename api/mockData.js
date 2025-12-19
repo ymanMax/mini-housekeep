@@ -9,6 +9,66 @@ export const mockDelay = (data, delay = 500) => {
   });
 };
 
+// 模拟订单状态变化
+export const simulateOrderStatusChange = (orderId, callback) => {
+  // 模拟一段时间后订单状态变化
+  setTimeout(() => {
+    const trackData = orderTrackData[orderId];
+    if (trackData) {
+      const currentStatus = trackData.data.orderInfo.status;
+
+      // 模拟状态流转：pending -> confirmed -> in_progress -> completed
+      let newStatus;
+      switch (currentStatus) {
+        case 'pending':
+          newStatus = 'confirmed';
+          break;
+        case 'confirmed':
+          newStatus = 'in_progress';
+          break;
+        case 'in_progress':
+          newStatus = 'completed';
+          break;
+        default:
+          newStatus = currentStatus;
+      }
+
+      // 更新订单状态
+      if (newStatus !== currentStatus) {
+        trackData.data.orderInfo.status = newStatus;
+
+        // 更新状态时间线
+        trackData.data.statusTimeline.forEach(item => {
+          if (item.title.includes(newStatus.replace('_', ' ')) ||
+              (newStatus === 'confirmed' && item.title === '订单确认') ||
+              (newStatus === 'in_progress' && item.title === '服务进行中') ||
+              (newStatus === 'completed' && item.title === '服务完成')) {
+            item.isCompleted = true;
+            item.time = new Date().toISOString().slice(0, 16).replace('T', ' ');
+          }
+        });
+
+        // 添加进度详情
+        const statusMessages = {
+          'confirmed': '订单已确认，服务人员已安排',
+          'in_progress': '服务已开始，服务人员已到达',
+          'completed': '服务已完成，感谢您的使用'
+        };
+
+        trackData.data.progressDetails.push({
+          id: trackData.data.progressDetails.length + 1,
+          title: `订单状态更新`,
+          time: new Date().toISOString().slice(0, 16).replace('T', ' '),
+          content: statusMessages[newStatus]
+        });
+
+        // 调用回调函数通知状态变化
+        callback(orderId, newStatus, statusMessages[newStatus]);
+      }
+    }
+  }, 10000); // 10秒后模拟状态变化
+};
+
 // 轮播图数据
 export const bannerData = {
   code: "success",
@@ -196,6 +256,202 @@ export const orderListData = {
       worker: "赵师傅"
     }
   ]
+};
+
+// 订单跟踪数据
+export const orderTrackData = {
+  "20240115001": {
+    code: "success",
+    data: {
+      orderInfo: {
+        id: "20240115001",
+        serviceName: "深度保洁服务",
+        serviceTime: "2024-01-15 14:00",
+        status: "completed",
+        price: "240元",
+        address: "北京市朝阳区xxx小区",
+        worker: "李师傅"
+      },
+      statusTimeline: [
+        {
+          id: 1,
+          title: "订单创建",
+          time: "2024-01-14 10:30",
+          description: "用户成功提交订单",
+          isCompleted: true
+        },
+        {
+          id: 2,
+          title: "订单确认",
+          time: "2024-01-14 11:00",
+          description: "客服已确认订单，安排服务人员",
+          isCompleted: true
+        },
+        {
+          id: 3,
+          title: "服务进行中",
+          time: "2024-01-15 14:00",
+          description: "服务人员已到达，开始提供服务",
+          isCompleted: true
+        },
+        {
+          id: 4,
+          title: "服务完成",
+          time: "2024-01-15 17:00",
+          description: "服务已完成，用户确认满意",
+          isCompleted: true
+        }
+      ],
+      progressDetails: [
+        {
+          id: 1,
+          title: "订单已接收",
+          time: "2024-01-14 10:30",
+          content: "您的订单已成功提交，我们将尽快为您安排服务"
+        },
+        {
+          id: 2,
+          title: "服务人员已安排",
+          time: "2024-01-14 11:00",
+          content: "已为您安排李师傅提供深度保洁服务，联系电话：138****1234"
+        },
+        {
+          id: 3,
+          title: "服务人员已出发",
+          time: "2024-01-15 13:30",
+          content: "李师傅已从公司出发，预计14:00到达您的地址"
+        },
+        {
+          id: 4,
+          title: "服务已完成",
+          time: "2024-01-15 17:00",
+          content: "深度保洁服务已完成，感谢您选择我们的服务"
+        }
+      ]
+    }
+  },
+  "20240110001": {
+    code: "success",
+    data: {
+      orderInfo: {
+        id: "20240110001",
+        serviceName: "高级月嫂服务",
+        serviceTime: "2024-01-10 09:00",
+        status: "in_progress",
+        price: "380元/天",
+        address: "北京市海淀区xxx小区",
+        worker: "王阿姨"
+      },
+      statusTimeline: [
+        {
+          id: 1,
+          title: "订单创建",
+          time: "2024-01-08 15:20",
+          description: "用户成功提交订单",
+          isCompleted: true
+        },
+        {
+          id: 2,
+          title: "订单确认",
+          time: "2024-01-08 16:00",
+          description: "客服已确认订单，安排服务人员",
+          isCompleted: true
+        },
+        {
+          id: 3,
+          title: "服务进行中",
+          time: "2024-01-10 09:00",
+          description: "服务人员已到达，开始提供服务",
+          isCompleted: true
+        },
+        {
+          id: 4,
+          title: "服务完成",
+          time: "2024-01-17 18:00",
+          description: "服务将在7天后完成",
+          isCompleted: false
+        }
+      ],
+      progressDetails: [
+        {
+          id: 1,
+          title: "订单已接收",
+          time: "2024-01-08 15:20",
+          content: "您的订单已成功提交，我们将尽快为您安排服务"
+        },
+        {
+          id: 2,
+          title: "服务人员已安排",
+          time: "2024-01-08 16:00",
+          content: "已为您安排王阿姨提供高级月嫂服务，联系电话：139****5678"
+        },
+        {
+          id: 3,
+          title: "服务已开始",
+          time: "2024-01-10 09:00",
+          content: "王阿姨已到达您的地址，开始提供为期7天的高级月嫂服务"
+        },
+        {
+          id: 4,
+          title: "服务进行中",
+          time: "2024-01-12 10:00",
+          content: "服务已进行2天，一切顺利，王阿姨会继续为您提供专业的服务"
+        }
+      ]
+    }
+  },
+  "20240105001": {
+    code: "success",
+    data: {
+      orderInfo: {
+        id: "20240105001",
+        serviceName: "维修安装服务",
+        serviceTime: "2024-01-05 10:00",
+        status: "pending",
+        price: "120元",
+        address: "北京市丰台区xxx小区",
+        worker: "赵师傅"
+      },
+      statusTimeline: [
+        {
+          id: 1,
+          title: "订单创建",
+          time: "2024-01-04 14:15",
+          description: "用户成功提交订单",
+          isCompleted: true
+        },
+        {
+          id: 2,
+          title: "订单确认",
+          time: "处理中",
+          description: "客服正在确认订单，安排服务人员",
+          isCompleted: false
+        },
+        {
+          id: 3,
+          title: "服务进行中",
+          time: "待安排",
+          description: "服务人员将按约定时间到达",
+          isCompleted: false
+        },
+        {
+          id: 4,
+          title: "服务完成",
+          time: "待完成",
+          description: "服务完成后将及时通知您",
+          isCompleted: false
+        }
+      ],
+      progressDetails: [
+        {
+          id: 1,
+          title: "订单已接收",
+          time: "2024-01-04 14:15",
+          content: "您的订单已成功提交，我们将尽快为您安排服务"
+        }
+      ]
+    }
+  }
 };
 
 // 评价数据

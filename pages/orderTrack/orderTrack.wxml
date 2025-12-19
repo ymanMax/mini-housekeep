@@ -1,0 +1,78 @@
+<!--orderTrack.wxml-->
+<view class="page">
+  <view class="order-track">
+    <!-- 订单基本信息 -->
+    <view class="order-info-section">
+      <view class="section-title">订单信息</view>
+      <view class="info-card">
+        <view class="info-item">
+          <text class="label">订单编号：</text>
+          <text class="value">{{orderInfo.id}}</text>
+        </view>
+        <view class="info-item">
+          <text class="label">服务名称：</text>
+          <text class="value">{{orderInfo.serviceName}}</text>
+        </view>
+        <view class="info-item">
+          <text class="label">服务时间：</text>
+          <text class="value">{{orderInfo.serviceTime}}</text>
+        </view>
+        <view class="info-item">
+          <text class="label">服务人员：</text>
+          <text class="value">{{orderInfo.worker}}</text>
+        </view>
+        <view class="info-item">
+          <text class="label">服务地址：</text>
+          <text class="value">{{orderInfo.address}}</text>
+        </view>
+        <view class="info-item">
+          <text class="label">订单金额：</text>
+          <text class="value price">{{orderInfo.price}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 订单状态跟踪 -->
+    <view class="order-status-section">
+      <view class="section-title">订单状态</view>
+      <view class="status-card">
+        <view class="current-status">
+          <text class="status-label">当前状态：</text>
+          <text class="status-value {{orderInfo.status}}">
+            <text wx:if="{{orderInfo.status === 'pending'}}">待处理</text>
+            <text wx:elif="{{orderInfo.status === 'confirmed'}}">已确认</text>
+            <text wx:elif="{{orderInfo.status === 'in_progress'}}">进行中</text>
+            <text wx:elif="{{orderInfo.status === 'completed'}}">已完成</text>
+            <text wx:elif="{{orderInfo.status === 'cancelled'}}">已取消</text>
+          </text>
+        </view>
+
+        <!-- 状态时间线 -->
+        <view class="status-timeline">
+          <view wx:for="{{statusTimeline}}" wx:key="id" class="timeline-item {{item.status === orderInfo.status ? 'current' : ''}} {{item.isCompleted ? 'completed' : ''}}">
+            <view class="timeline-dot"></view>
+            <view class="timeline-content">
+              <view class="timeline-title">{{item.title}}</view>
+              <view class="timeline-time">{{item.time}}</view>
+              <view class="timeline-desc" wx:if="{{item.description}}">{{item.description}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 订单进度详情 -->
+    <view class="order-progress-section" wx:if="{{progressDetails.length > 0}}">
+      <view class="section-title">处理进度</view>
+      <view class="progress-card">
+        <view wx:for="{{progressDetails}}" wx:key="id" class="progress-item">
+          <view class="progress-header">
+            <view class="progress-title">{{item.title}}</view>
+            <view class="progress-time">{{item.time}}</view>
+          </view>
+          <view class="progress-content">{{item.content}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
