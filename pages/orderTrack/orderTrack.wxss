@@ -1,0 +1,245 @@
+/* orderTrack.wxss */
+.page {
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  padding: 20rpx;
+}
+
+.order-track {
+  background-color: #f5f5f5;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  padding: 0 20rpx;
+}
+
+/* 订单信息区域 */
+.order-info-section {
+  margin-bottom: 30rpx;
+}
+
+.info-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.info-item {
+  display: flex;
+  margin-bottom: 16rpx;
+  font-size: 26rpx;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  color: #999;
+  min-width: 160rpx;
+}
+
+.value {
+  color: #333;
+  flex: 1;
+}
+
+.value.price {
+  color: #e64340;
+  font-weight: bold;
+}
+
+/* 订单状态区域 */
+.order-status-section {
+  margin-bottom: 30rpx;
+}
+
+.status-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.current-status {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.status-label {
+  font-size: 28rpx;
+  color: #999;
+  margin-right: 20rpx;
+}
+
+.status-value {
+  font-size: 32rpx;
+  font-weight: bold;
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+}
+
+.status-value.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-value.confirmed {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.status-value.in_progress {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-value.completed {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-value.cancelled {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* 状态时间线 */
+.status-timeline {
+  position: relative;
+  padding-left: 40rpx;
+}
+
+.status-timeline::before {
+  content: '';
+  position: absolute;
+  left: 18rpx;
+  top: 0;
+  bottom: 0;
+  width: 2rpx;
+  background-color: #eee;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40rpx;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -38rpx;
+  top: 6rpx;
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background-color: #ccc;
+  border: 4rpx solid #fff;
+  box-shadow: 0 0 0 2rpx #eee;
+}
+
+.timeline-item.completed .timeline-dot {
+  background-color: #52c41a;
+  box-shadow: 0 0 0 2rpx #d9f7be;
+}
+
+.timeline-item.current .timeline-dot {
+  background-color: #1890ff;
+  box-shadow: 0 0 0 2rpx #e6f7ff;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 2rpx #e6f7ff;
+  }
+  50% {
+    box-shadow: 0 0 0 6rpx rgba(24, 144, 255, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 2rpx #e6f7ff;
+  }
+}
+
+.timeline-content {
+  background-color: #fafafa;
+  border-radius: 8rpx;
+  padding: 20rpx;
+}
+
+.timeline-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.timeline-time {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+
+.timeline-desc {
+  font-size: 26rpx;
+  color: #666;
+}
+
+/* 订单进度区域 */
+.order-progress-section {
+  margin-bottom: 30rpx;
+}
+
+.progress-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.progress-item {
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.progress-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.progress-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.progress-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.progress-content {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.5;
+}

@@ -8,6 +8,7 @@
     "pages/booking/booking",
     "pages/introduction/introduction",
     "pages/orderList/orderList",
+    "pages/orderTrack/orderTrack",
     "pages/userInfo/userInfo"
   ],
   "window": {

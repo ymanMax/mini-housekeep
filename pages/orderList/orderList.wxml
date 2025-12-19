@@ -1,6 +1,48 @@
 <!--orderList.wxml-->
 <view class="page">
-  <view class="column">
-    <view class="title">{{}}</view>
+  <view class="order-list">
+    <view class="section-title">我的订单</view>
+
+    <!-- 订单列表 -->
+    <view wx:for="{{orderList}}" wx:key="id" class="order-item">
+      <view class="order-header">
+        <view class="order-info">
+          <view class="service-name">{{item.serviceName}}</view>
+          <view class="service-time">{{item.serviceTime}}</view>
+        </view>
+        <view class="order-status {{item.status}}">
+          <text wx:if="{{item.status === 'pending'}}">待处理</text>
+          <text wx:elif="{{item.status === 'in_progress'}}">进行中</text>
+          <text wx:elif="{{item.status === 'completed'}}">已完成</text>
+          <text wx:elif="{{item.status === 'cancelled'}}">已取消</text>
+        </view>
+      </view>
+
+      <view class="order-details">
+        <view class="detail-item">
+          <text class="label">服务人员：</text>
+          <text class="value">{{item.worker}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="label">服务地址：</text>
+          <text class="value">{{item.address}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="label">价格：</text>
+          <text class="value price">{{item.price}}</text>
+        </view>
+      </view>
+
+      <view class="order-actions">
+        <button class="track-btn" bindtap="trackOrder" data-orderid="{{item.id}}">
+          订单跟踪
+        </button>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view wx:if="{{orderList.length === 0}}" class="empty-state">
+      <text>暂无订单</text>
+    </view>
   </view>
 </view>
