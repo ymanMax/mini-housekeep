@@ -1,13 +1,14 @@
-import { 
-  mockDelay, 
-  bannerData, 
-  serviceData, 
-  detailListData, 
-  detailInfoData, 
-  userInfoData, 
-  orderListData, 
-  commentData, 
-  introductionData 
+import {
+  mockDelay,
+  bannerData,
+  serviceData,
+  detailListData,
+  detailInfoData,
+  userInfoData,
+  orderListData,
+  commentData,
+  introductionData,
+  messagesData
 } from './mockData.js';
 
 // 首页相关请求
@@ -126,11 +127,38 @@ export const companyRequest = {
   }
 };
 
+// 消息通知相关请求
+export const messageRequest = {
+  // 获取消息列表
+  getMessagesList() {
+    return mockDelay(messagesData);
+  },
+
+  // 标记消息为已读
+  markMessageAsRead(messageId) {
+    return mockDelay({
+      code: "success",
+      message: "消息已标记为已读",
+      data: { messageId }
+    });
+  },
+
+  // 删除消息
+  deleteMessage(messageId) {
+    return mockDelay({
+      code: "success",
+      message: "消息已删除",
+      data: { messageId }
+    });
+  }
+};
+
 export default {
   homeRequest,
   serviceRequest,
   userRequest,
   orderRequest,
   commentRequest,
-  companyRequest
+  companyRequest,
+  messageRequest
 };

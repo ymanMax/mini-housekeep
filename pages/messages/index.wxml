@@ -1,0 +1,34 @@
+<!--pages/messages/index.wxml-->
+<view class="page">
+  <view class="page-header">
+    <text class="title">消息中心</text>
+  </view>
+
+  <view class="message-list">
+    <block wx:for="{{messages}}" wx:key="id">
+      <view class="message-item {{item.isRead ? 'read' : 'unread'}}">
+        <view class="message-content" bindtap="markAsRead" data-id="{{item.id}}">
+          <view class="message-header">
+            <text class="message-title">{{item.title}}</text>
+            <text class="message-type">{{messageTypes[item.type]}}</text>
+          </view>
+          <text class="message-text">{{item.content}}</text>
+          <text class="message-time">{{item.createTime}}</text>
+        </view>
+        <view class="message-actions">
+          <button class="action-btn mark-read-btn" size="mini" bindtap="markAsRead" data-id="{{item.id}}">
+            {{item.isRead ? '已读' : '标记已读'}}
+          </button>
+          <button class="action-btn delete-btn" size="mini" bindtap="deleteMessage" data-id="{{item.id}}">
+            删除
+          </button>
+        </view>
+        <view wx:if="{{!item.isRead}}" class="unread-dot"></view>
+      </view>
+    </block>
+  </view>
+
+  <view wx:if="{{messages.length === 0}}" class="empty-state">
+    <text>暂无消息</text>
+  </view>
+</view>

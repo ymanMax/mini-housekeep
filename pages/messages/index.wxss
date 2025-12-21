@@ -1,0 +1,117 @@
+/* pages/messages/index.wxss */
+.page {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.page-header {
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #eee;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.message-list {
+  padding: 20rpx 0;
+}
+
+.message-item {
+  margin: 0 30rpx 20rpx;
+  padding: 30rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.message-item.unread {
+  border-left: 6rpx solid #1a99fc;
+}
+
+.message-item.read {
+  opacity: 0.7;
+}
+
+.message-content {
+  flex: 1;
+  margin-right: 20rpx;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.message-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.message-type {
+  font-size: 24rpx;
+  color: #1a99fc;
+  background-color: #e8f3ff;
+  padding: 6rpx 12rpx;
+  border-radius: 20rpx;
+}
+
+.message-text {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 15rpx;
+}
+
+.message-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.message-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.action-btn {
+  font-size: 24rpx;
+  padding: 10rpx 20rpx;
+}
+
+.mark-read-btn {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.delete-btn {
+  background-color: #ff4d4f;
+  color: white;
+}
+
+.unread-dot {
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+  width: 12rpx;
+  height: 12rpx;
+  background-color: #ff4d4f;
+  border-radius: 50%;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 100rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}

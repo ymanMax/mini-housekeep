@@ -18,4 +18,7 @@
       <navigator class="item" url="../comment/comment">我要评论</navigator>
     </view>
   </view>
+  <view class="section messages-section">
+    <navigator class="section-hd" url="../messages/index">消息中心<view class="arrow"></view></navigator>
+  </view>
 </view>
