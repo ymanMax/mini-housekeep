@@ -232,6 +232,53 @@ export const commentData = {
   ]
 };
 
+// 消息通知数据
+export const messagesData = {
+  code: "success",
+  data: [
+    {
+      id: "1",
+      title: "您的订单已完成",
+      content: "您预约的深度保洁服务已完成，服务人员李师傅已确认服务结束",
+      type: "order",
+      isRead: false,
+      createTime: "2024-01-15 15:30"
+    },
+    {
+      id: "2",
+      title: "新用户专享优惠",
+      content: "欢迎新用户！现在预约任意服务即可享受8折优惠，有效期7天",
+      type: "promotion",
+      isRead: false,
+      createTime: "2024-01-14 10:00"
+    },
+    {
+      id: "3",
+      title: "系统维护通知",
+      content: "系统将于2024年1月16日凌晨2-4点进行维护，期间可能影响服务使用",
+      type: "system",
+      isRead: true,
+      createTime: "2024-01-13 09:00"
+    },
+    {
+      id: "4",
+      title: "订单状态更新",
+      content: "您的高级月嫂服务订单已确认，服务人员王阿姨将于明天上午9点到达",
+      type: "order",
+      isRead: false,
+      createTime: "2024-01-12 14:00"
+    },
+    {
+      id: "5",
+      title: "会员积分提醒",
+      content: "您的账户已累计1250积分，可在下次消费时抵扣现金或兑换礼品",
+      type: "system",
+      isRead: true,
+      createTime: "2024-01-11 16:00"
+    }
+  ]
+};
+
 // 公司介绍数据
 export const introductionData = {
   code: "success",
